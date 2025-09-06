@@ -1,0 +1,14 @@
+/* Add to your existing globals.css */
+.carousel-container {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
