@@ -1,0 +1,52 @@
+.embla {
+  width: 100%;
+  max-width: 100vw; /* Ensure it doesn't exceed viewport width */
+  margin: auto;
+  --slide-height: 19rem;
+  --slide-spacing: 1rem;
+  --slide-size: 100%;
+  overflow: hidden; /* Prevent any overflow */
+}
+
+.embla__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+
+.embla__slide {
+  transform: translate3d(0, 0, 0);
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+  box-sizing: border-box; /* Ensure padding is included in width calculation */
+}
+
+/* Remove any fixed heights that might cause issues */
+.embla__slide__number {
+  border-radius: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  height: auto; /* Remove fixed height */
+}
+
+/* Responsive adjustments */
+@media (min-width: 640px) {
+  .embla {
+    --slide-size: 50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .embla {
+    --slide-size: 33.3333%;
+    max-width: 1200px; /* Optional: set a max width for large screens */
+  }
+}

@@ -11,7 +11,7 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
       
       // Calculate scroll progress
       const scrollTop = window.scrollY;
@@ -20,7 +20,6 @@ const Navigation = () => {
       setScrollProgress(progress);
     };
 
-    // Only add event listener on client side
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -35,26 +34,28 @@ const Navigation = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "py-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm"
-            : "py-4 bg-white dark:bg-gray-900"
+            ? "py-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm"
+            : "py-3 bg-white dark:bg-gray-900"
         }`}
+        style={{ width: '100vw', maxWidth: '100vw', boxSizing: 'border-box' }}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 mx-auto" style={{ maxWidth: '100%' }}>
           <div className="flex justify-between items-center">
             {/* Logo */}
             <Link
               href="/"
               className={`font-bold bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent transition-all ${
-                isScrolled ? "text-2xl" : "text-3xl"
+                isScrolled ? "text-xl" : "text-2xl"
               }`}
+              onClick={() => setIsMenuOpen(false)}
             >
               Rascal Land
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-6">
+            <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -63,9 +64,9 @@ const Navigation = () => {
                     href={item.href}
                     className={`flex items-center transition-all ${
                       isScrolled ? "text-sm" : "text-base"
-                    } text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 font-medium`}
+                    } text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 font-medium px-2 py-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800`}
                   >
-                    <Icon size={isScrolled ? 18 : 20} className="mr-2" />
+                    <Icon size={isScrolled ? 18 : 20} className="mr-1.5" />
                     {item.name}
                   </Link>
                 );
@@ -73,10 +74,11 @@ const Navigation = () => {
             </div>
 
             {/* Mobile menu button */}
-            <div className="md:hidden flex items-center space-x-4">
+            <div className="md:hidden flex items-center">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400"
+                className="mobile-menu-button p-2 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+                aria-label="Toggle menu"
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -85,32 +87,37 @@ const Navigation = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
-            <div className="container mx-auto px-4 py-4">
-              <div className="flex flex-col space-y-4">
-                {navItems.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="flex items-center text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-medium py-2"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      <Icon size={20} className="mr-3" />
-                      {item.name}
-                    </Link>
-                  );
-                })}
-              </div>
+        <div 
+          className={`mobile-menu md:hidden bg-white dark:bg-gray-900 transition-all duration-300 ease-in-out ${
+            isMenuOpen 
+              ? "max-h-96 opacity-100 border-t border-gray-200 dark:border-gray-700" 
+              : "max-h-0 opacity-0 overflow-hidden"
+          }`}
+          style={{ width: '100vw', maxWidth: '100vw', boxSizing: 'border-box' }}
+        >
+          <div className="px-4 py-3" style={{ maxWidth: '100%' }}>
+            <div className="flex flex-col space-y-2">
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="flex items-center text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-medium py-3 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <Icon size={22} className="mr-4" />
+                    <span className="text-lg">{item.name}</span>
+                  </Link>
+                );
+              })}
             </div>
           </div>
-        )}
+        </div>
       </nav>
 
-      {/* Scroll progress indicator - Only rendered on client side */}
-      <div className="fixed top-0 left-0 w-full h-1 z-50">
+      {/* Scroll progress indicator */}
+      <div className="fixed top-0 left-0 right-0 h-1 z-50" style={{ width: '100vw' }}>
         <div
           className="h-full bg-gradient-to-r from-purple-600 to-blue-500 transition-all duration-300"
           style={{
@@ -118,6 +125,15 @@ const Navigation = () => {
           }}
         />
       </div>
+
+      {/* Backdrop for mobile menu when open */}
+      {isMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/20 z-40 md:hidden"
+          onClick={() => setIsMenuOpen(false)}
+          style={{ width: '100vw', height: '100vh' }}
+        />
+      )}
     </>
   );
 };

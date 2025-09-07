@@ -41,7 +41,7 @@ const RoadmapSection = () => {
       id="roadmap"
       className="min-h-screen flex flex-col items-center justify-center relative p-4 sm:px-6 lg:px-8"
     >
-      <div className="text-center max-w-4xl mx-auto">
+      <div className="text-center mx-auto">
         <h2 className="text-4xl mt-8 md:text-5xl font-bold mb-6 text-gray-800 dark:text-white">
           Roadmap
         </h2>
@@ -51,7 +51,7 @@ const RoadmapSection = () => {
 
         <div className="relative mt-12">
           {/* Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-purple-500 to-blue-500"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-purple-500 to-blue-500 -z-10"></div>
 
           {/* Timeline items */}
           <div className="space-y-12">

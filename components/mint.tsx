@@ -52,41 +52,41 @@ const MintComponent = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden p-6">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">Rascal Gang Mint</h2>
-        <p className="text-gray-600 dark:text-gray-300">Mint your exclusive Solana NFT</p>
+    <div className="w-full max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden p-4 sm:p-6">
+      <div className="text-center mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-2">Rascal Gang Mint</h2>
+        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">Mint your exclusive Solana NFT</p>
       </div>
 
-      <div className="grid grid-cols-3 gap-4 mb-8">
-        <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center">
-          <div className="text-2xl font-bold text-gray-800 dark:text-white">{TOTAL_COLLECTION}</div>
-          <div className="text-sm text-gray-600 dark:text-gray-300">Total Collection</div>
+      <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-6 sm:mb-8">
+        <div className="bg-gray-100 dark:bg-gray-700 p-2 sm:p-4 rounded-lg text-center">
+          <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 dark:text-white">{TOTAL_COLLECTION}</div>
+          <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Total Collection</div>
         </div>
-        <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center">
-          <div className="text-2xl font-bold text-gray-800 dark:text-white">{remainingCount}</div>
-          <div className="text-sm text-gray-600 dark:text-gray-300">Remaining NFTs</div>
+        <div className="bg-gray-100 dark:bg-gray-700 p-2 sm:p-4 rounded-lg text-center">
+          <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 dark:text-white">{remainingCount}</div>
+          <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Remaining NFTs</div>
         </div>
-        <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center">
-          <div className="text-2xl font-bold text-gray-800 dark:text-white">{mintedCount}</div>
-          <div className="text-sm text-gray-600 dark:text-gray-300">Minted NFTs</div>
+        <div className="bg-gray-100 dark:bg-gray-700 p-2 sm:p-4 rounded-lg text-center">
+          <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 dark:text-white">{mintedCount}</div>
+          <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Minted NFTs</div>
         </div>
       </div>
 
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
         {connected ? (
           <div className="text-center">
-            <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
-              Connected: {publicKey?.toString().slice(0, 8)}...{publicKey?.toString().slice(-8)}
+            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 break-all">
+              Connected: {publicKey?.toString().slice(0, 6)}...{publicKey?.toString().slice(-6)}
             </p>
             <button
               onClick={handleMint}
               disabled={isMinting || remainingCount <= 0}
-              className="w-full bg-gradient-to-r from-purple-600 to-blue-500 text-white py-3 px-4 rounded-lg font-semibold hover:from-purple-700 hover:to-blue-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-gradient-to-r from-purple-600 to-blue-500 text-white py-2 sm:py-3 px-3 sm:px-4 rounded-lg font-semibold hover:from-purple-700 hover:to-blue-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
             >
               {isMinting ? (
                 <div className="flex items-center justify-center">
-                  <Loader2 className="animate-spin mr-2" size={20} />
+                  <Loader2 className="animate-spin mr-2" size={18} />
                   Minting...
                 </div>
               ) : (
@@ -94,15 +94,17 @@ const MintComponent = () => {
               )}
             </button>
             {remainingCount <= 0 && (
-              <p className="text-red-500 text-sm mt-2">All NFTs have been minted!</p>
+              <p className="text-red-500 text-xs sm:text-sm mt-2">All NFTs have been minted!</p>
             )}
           </div>
         ) : (
           <div className="text-center">
-            <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-3 sm:mb-4">
               Connect your wallet to mint
             </p>
-            <WalletMultiButton className="w-full bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600" />
+            <div className="w-full flex justify-center">
+              <WalletMultiButton className="!bg-gradient-to-r !from-purple-600 !to-blue-500 hover:!from-purple-700 hover:!to-blue-600 !text-xs sm:!text-sm" />
+            </div>
           </div>
         )}
       </div>
