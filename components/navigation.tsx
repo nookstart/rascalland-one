@@ -1,5 +1,5 @@
 "use client";
-
+import { ThemeSwitcher } from "@/components/theme-switcher";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Home, Users, Map, Sparkles } from "lucide-react";
@@ -34,6 +34,7 @@ const Navigation = () => {
   return (
     <>
       <nav
+        role="navigation"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
             ? "py-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm"
@@ -71,6 +72,7 @@ const Navigation = () => {
                   </Link>
                 );
               })}
+              <ThemeSwitcher />
             </div>
 
             {/* Mobile menu button */}

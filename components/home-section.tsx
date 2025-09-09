@@ -1,7 +1,10 @@
 "use client";
+import '@/app/rascalland.css';
+import VideoPlayer from './video-player';
 
 
 const HomeSection = () => {
+  
   return (
     <section
       id="home"
@@ -15,7 +18,10 @@ const HomeSection = () => {
           The New Hit Kids Animation Series.
           Earn your 15% royalty stake in the new TV Kids Animated Series now !!!
         </p>
-       
+        {/* TV Container */}
+        <div className="relative w-full max-w-4xl mx-auto mb-12 bg-opacity-100">
+          <VideoPlayer playbackId='2v1uyGlSJj3IXMxPrsBk02kUyjWSIjXfMK1VfcwoNf8M'/>
+        </div>
       </div>
     </section>
   );

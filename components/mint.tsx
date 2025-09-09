@@ -1,51 +1,104 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Loader2 } from 'lucide-react';
+import { createUmi } from '@metaplex-foundation/umi-bundle-defaults';
+import { publicKey } from "@metaplex-foundation/umi";
+import { fetchCandyMachine, mintV2, safeFetchCandyGuard, mplCandyMachine } from '@metaplex-foundation/mpl-candy-machine';
+import { setComputeUnitLimit } from '@metaplex-foundation/mpl-toolbox';
+import { transactionBuilder, generateSigner } from '@metaplex-foundation/umi';
+import { walletAdapterIdentity } from '@metaplex-foundation/umi-signer-wallet-adapters';
+import dynamic from 'next/dynamic';
 
-// Mock data - replace with actual contract calls
-const TOTAL_COLLECTION = 10000;
-const MINTED_NFTS = 3425;
-const REMAINING_NFTS = TOTAL_COLLECTION - MINTED_NFTS;
+const WalletMultiButton = dynamic(
+  () => import('@solana/wallet-adapter-react-ui').then((mod) => mod.WalletMultiButton),
+  { ssr: false }
+);
 
 const MintComponent = () => {
   const { connection } = useConnection();
-  const { publicKey, connected } = useWallet();
+  const wallet = useWallet();
+  const { publicKey: walletPublicKey, connected } = wallet;
   const [isMinting, setIsMinting] = useState(false);
-  const [mintedCount, setMintedCount] = useState(MINTED_NFTS);
-  const [remainingCount, setRemainingCount] = useState(REMAINING_NFTS);
+  const [candyMachine, setCandyMachine] = useState<any>(null);
+  const [candyGuard, setCandyGuard] = useState<any>(null);
+  const [mintedCount, setMintedCount] = useState(0);
+  const [remainingCount, setRemainingCount] = useState(0);
+  const [totalCollection, setTotalCollection] = useState(0);
+  const [error, setError] = useState<string | null>(null);
 
-  // In a real app, you would fetch these values from your contract
-  useEffect(() => {
-    // Simulate fetching data from contract
-    const fetchData = async () => {
-      // Replace with actual contract calls
-      console.log("Fetching mint data...");
-    };
+  const umi = useMemo(() => {
+  if (!connection || !wallet || !wallet.publicKey) return null;
+  
+    const umiInstance = createUmi(connection.rpcEndpoint);
+    umiInstance.use(walletAdapterIdentity(wallet));
+    umiInstance.use(mplCandyMachine());
+    return umiInstance;
+  }, [connection, wallet]);
+
+  const fetchCandyMachineData = useCallback(async () => {
+    if (!umi || !process.env.NEXT_PUBLIC_CANDY_MACHINE_ID) return;
     
-    if (connected) {
-      fetchData();
+    try {
+      const candyMachineAddress = publicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_ID);
+      const candyMachineData = await fetchCandyMachine(umi, candyMachineAddress);
+      const candyGuardData = await safeFetchCandyGuard(umi, candyMachineData.mintAuthority);
+      
+      setCandyMachine(candyMachineData);
+      setCandyGuard(candyGuardData);
+      setTotalCollection(Number(candyMachineData.data.itemsAvailable));
+      setMintedCount(Number(candyMachineData.itemsRedeemed));
+      setRemainingCount(Number(candyMachineData.data.itemsAvailable) - Number(candyMachineData.itemsRedeemed));
+      setError(null);
+    } catch (error) {
+      console.error('Failed to fetch Candy Machine data:', error);
+      setError('Failed to load candy machine data');
     }
-  }, [connected, connection]);
+  }, [umi]);
+
+  useEffect(() => {
+    fetchCandyMachineData();
+  }, [fetchCandyMachineData]);
 
   const handleMint = async () => {
-    if (!connected) return;
-    
+    if (!connected || !walletPublicKey || !candyMachine || !candyGuard || !umi) return;
+
     setIsMinting(true);
+    setError(null);
+    
     try {
-      // Simulate minting process - replace with actual minting logic
-      console.log("Minting NFT...");
-      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate transaction
+      const nftMint = generateSigner(umi);
       
-      // Update counts
-      setMintedCount(prev => prev + 1);
-      setRemainingCount(prev => prev - 1);
+      const transaction = transactionBuilder()
+        .add(setComputeUnitLimit(umi, { units: 800_000 }))
+        .add(mintV2(umi, {
+          candyMachine: candyMachine.publicKey,
+          candyGuard: candyGuard.publicKey,
+          nftMint,
+          collectionMint: candyMachine.collectionMint,
+          collectionUpdateAuthority: candyMachine.authority,
+          mintArgs: {
+            solPayment: { 
+              destination: publicKey(process.env.NEXT_PUBLIC_TREASURY as string),
+            }
+          },
+        }));
+
+      const { signature } = await transaction.sendAndConfirm(umi, {
+        confirm: { commitment: 'confirmed' },
+        send: { skipPreflight: false },
+      });
+
+      console.log('NFT minted successfully!', signature);
       
-      console.log("NFT minted successfully!");
-    } catch (error) {
-      console.error("Minting failed:", error);
+      // I-refetch ang latest data
+      await fetchCandyMachineData();
+      
+    } catch (error: any) {
+      console.error('Minting failed:', error);
+      setError(`Minting failed: ${error.message}`);
     } finally {
       setIsMinting(false);
     }
@@ -58,9 +111,15 @@ const MintComponent = () => {
         <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">Mint your exclusive Solana NFT</p>
       </div>
 
+      {error && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+          {error}
+        </div>
+      )}
+
       <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-6 sm:mb-8">
         <div className="bg-gray-100 dark:bg-gray-700 p-2 sm:p-4 rounded-lg text-center">
-          <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 dark:text-white">{TOTAL_COLLECTION}</div>
+          <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 dark:text-white">{totalCollection}</div>
           <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Total Collection</div>
         </div>
         <div className="bg-gray-100 dark:bg-gray-700 p-2 sm:p-4 rounded-lg text-center">
@@ -77,7 +136,7 @@ const MintComponent = () => {
         {connected ? (
           <div className="text-center">
             <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 break-all">
-              Connected: {publicKey?.toString().slice(0, 6)}...{publicKey?.toString().slice(-6)}
+              Connected: {walletPublicKey?.toString().slice(0, 6)}...{walletPublicKey?.toString().slice(-6)}
             </p>
             <button
               onClick={handleMint}

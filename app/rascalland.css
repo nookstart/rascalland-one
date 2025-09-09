@@ -1,14 +1,34 @@
 /* Add to your existing globals.css */
-.carousel-container {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+.tv-screen {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.carousel-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera */
+.tv-frame {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 75%; /* Aspect ratio ng TV frame */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.carousel-item {
-  flex: 0 0 auto;
-  scroll-snap-align: start;
+.video-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 70%;
+  overflow: hidden;
 }
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+

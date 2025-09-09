@@ -30,10 +30,13 @@
     }
   },
   "include": [
+    "video.d.ts",
+    "video.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "/types/static.d.ts"
   ],
   "exclude": [
     "node_modules"
