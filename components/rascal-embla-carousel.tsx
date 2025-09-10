@@ -3,6 +3,7 @@ import { EmblaOptionsType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import { RascalItem } from './rascal-gang-section';
 import Image from 'next/image';
+import AutoScroll from 'embla-carousel-auto-scroll';
 
 type PropType = {
   slides: RascalItem[]
@@ -11,7 +12,9 @@ type PropType = {
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
   const { slides, options } = props
-  const [emblaRef, /*emblaApi*/] = useEmblaCarousel(options)
+  const [emblaRef, /*emblaApi*/] = useEmblaCarousel(options, [
+    AutoScroll({ playOnInit: true })
+  ])
 
   return (
     <section className="embla w-full max-w-full mx-auto">

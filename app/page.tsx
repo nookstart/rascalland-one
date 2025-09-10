@@ -5,12 +5,15 @@ import RoadmapSection from "@/components/roadmap-section";
 import SectionNavigation from "@/components/section-navigation";
 
 
-
 export default function Home() {
   return (
     <>
       <Navigation />
-      <main role="main" className="relative min-h-screen flex flex-col items-center snap-y snap-mandatory">
+      <main 
+      role="main" 
+      className="relative min-h-screen flex flex-col items-center snap-y snap-mandatory"
+      
+      >
         <HomeSection />
         <RascalGangSection />
         <RoadmapSection />

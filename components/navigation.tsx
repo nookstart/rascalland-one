@@ -113,6 +113,7 @@ const Navigation = () => {
                   </Link>
                 );
               })}
+              <ThemeSwitcher />
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-
+import RoadMapBg from '@/public/images/roadmap.png';
 
 const RoadmapSection = () => {
   const roadmapItems = [
@@ -39,13 +39,18 @@ const RoadmapSection = () => {
   return (
     <section
       id="roadmap"
-      className="min-h-screen flex flex-col items-center justify-center relative p-4 sm:px-6 lg:px-8"
+      className="min-h-screen flex flex-col items-center justify-center relative px-4 py-2 sm:px-6 lg:px-8"
+      style={{
+        backgroundImage: `url(${RoadMapBg.src})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}
     >
       <div className="text-center mx-auto">
-        <h2 className="text-4xl mt-8 md:text-5xl font-bold mb-6 text-gray-800 dark:text-white">
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
           Roadmap
         </h2>
-        <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-10">
+        <p className="text-lg md:text-xl text-gray-600 dark:text-white dark:bg-black bg-white mb-12">
           Our strategic plan for building the ultimate Solana ecosystem
         </p>
 

@@ -3,7 +3,8 @@
 import { EmblaOptionsType } from 'embla-carousel';
 import EmblaCarousel from '@/components/rascal-embla-carousel';
 import '@/app/css/embla.css';
-
+import RascalGang from '@/public/images/rascal-gang.png';
+import Image from 'next/image';
 
 export interface RascalItem {
   id: number;
@@ -77,13 +78,12 @@ const RascalGangSection = () => {
       className="min-h-screen flex flex-col items-center justify-center relative px-4 py-12 sm:px-6 lg:px-8 bg-gray-100 dark:bg-gray-800"
     >
       <div className="text-center w-full max-w-full mx-auto px-0 sm:px-4">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-800 dark:text-white">
-          Rascal Gang
-        </h2>
-        <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 md:mb-10">
-          Join our exclusive community of Solana enthusiasts and NFT collectors.
-          The Rascal Gang is a collection of 8,888 unique NFTs living on the
-          Solana blockchain.
+       
+        <Image src={RascalGang}
+        alt="Rascal Gang"
+        />
+        <p className="text-base sm:text-lg md:text-xl font-bold text-gray-600 dark:text-gray-300 mb-8 md:mb-10 p-4">
+          Join the Little Rascals on their wild adventures! Explore magical worlds, learn important life lessons, and dive into exciting games and activities—all designed to entertain and educate your little ones!
         </p>
 
         {/* Carousel Component */}
