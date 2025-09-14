@@ -6,6 +6,7 @@ import Image from "next/image";
 import Rascal from "@/public/images/rascal.png";
 import RascalLandHeader from "@/public/images/rascal-land-header-view.png";
 import Hero8 from "@/public/images/hero8.png";
+
 const HomeSection = () => {
   const { theme } = useTheme();
   return (
@@ -23,9 +24,9 @@ const HomeSection = () => {
           <Image 
           src={RascalLandHeader}
           alt="Welcome to Rascal Land"
-          className="w-1/2 max-w-[640px] md:max-w-[320px] lg:max-w-[640px] mx-auto sm:pt-5 pt-10 pb-5"
+          className="w-1/2 max-w-[640px] md:max-w-[320px] lg:max-w-[640px] mx-auto pt-2 pb-2 sm:pt-10 sm:pb-5"
           />
-          <h2 className="text-white text-2xl sm:text-5xl font-bold text-center mx-auto">
+          <h2 className="text-white grandstander text-2xl sm:text-5xl font-bold text-center mx-auto">
             JOIN THE CREW
           </h2>
           <Image src={Rascal} 
@@ -35,7 +36,8 @@ const HomeSection = () => {
       </div>
       
       <div className="text-center mx-auto">
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">
+        <h1 className="text-5xl md:text-6xl grandstander font-bold mb-6 bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
+          
           Welcome to Rascal Land
         </h1>
         <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-10">

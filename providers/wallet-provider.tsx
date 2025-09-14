@@ -5,7 +5,7 @@ import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { PhantomWalletAdapter, SolflareWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
-import { clusterApiUrl } from '@solana/web3.js';
+
 
 
 export const SolanaWalletProvider: FC<{ children: ReactNode }> = ({ children }) => {
@@ -13,8 +13,11 @@ export const SolanaWalletProvider: FC<{ children: ReactNode }> = ({ children }) 
   const network = WalletAdapterNetwork.Devnet; // Change to Mainnet for production
 
   // You can also provide a custom RPC endpoint
-  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+  // const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 
+  const endpoint = process.env.NEXT_PUBLIC_RPC || "https://api.devnet.solana.com";
+  console.log(`[WalletProvider] Using RPC Endpoint: ${endpoint}`);
+  
   const wallets = useMemo(
     () => [
       new PhantomWalletAdapter(),

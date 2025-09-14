@@ -11,8 +11,8 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Rascal land",
-  description: "Rascal land: The New Hit Kids Animation Series.",
+  title: "Rascal Land",
+  description: "Rascal Land: The New Hit Kids Animation Series.",
 };
 
 const geistSans = Geist({
@@ -30,6 +30,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com"  />
+        <link href="https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"></link>
       </head>
       <body className={`${geistSans.className} antialiased`}>
         <ThemeProvider

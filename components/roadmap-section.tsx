@@ -72,7 +72,7 @@ const RoadmapSection = () => {
                 <div
                   className={`w-5/12 p-4 rounded-lg shadow-md ${
                     item.completed
-                      ? "bg-gradient-to-r from-purple-500 to-blue-500 text-white"
+                      ? "bg-gradient-to-r from-red-500 to-orange-500 text-white"
                       : "bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
                   }`}
                 >
