@@ -71,14 +71,14 @@ const SectionNavigation = () => {
     <div className="fixed right-6 bottom-6 z-40 flex flex-col space-y-4">
       <button
         onClick={() => scrollToSection(getPrevSection())}
-        className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400"
+        className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400"
         aria-label="Scroll to previous section"
       >
         <ChevronUp size={24} />
       </button>
       <button
         onClick={() => scrollToSection(getNextSection())}
-        className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400"
+        className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400"
         aria-label="Scroll to next section"
       >
         <ChevronDown size={24} />

@@ -50,13 +50,13 @@ const RoadmapSection = () => {
         <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
           Roadmap
         </h2>
-        <p className="text-lg md:text-xl text-gray-600 dark:text-white dark:bg-black bg-white mb-12">
+        <p className="text-lg md:text-xl text-gray-600 dark:text-white dark:bg-black bg-gradient-to-r from-cyan-500 to-yellow-500 mb-12">
           Our strategic plan for building the ultimate Solana ecosystem
         </p>
 
         <div className="relative mt-12">
           {/* Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-purple-500 to-blue-500 -z-10"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-red-500 to-orange-500 -z-10"></div>
 
           {/* Timeline items */}
           <div className="space-y-12">
@@ -72,7 +72,7 @@ const RoadmapSection = () => {
                 <div
                   className={`w-5/12 p-4 rounded-lg shadow-md ${
                     item.completed
-                      ? "bg-gradient-to-r from-red-500 to-orange-500 text-white"
+                      ? "bg-gradient-to-r from-cyan-500 to-yellow-500 text-white"
                       : "bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
                   }`}
                 >

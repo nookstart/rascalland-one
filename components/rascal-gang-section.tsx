@@ -75,7 +75,7 @@ const RascalGangSection = () => {
   return (
     <section
       id="rascal-gang"
-      className="min-h-screen flex flex-col items-center justify-center relative px-4 py-12 sm:px-6 lg:px-8 bg-gray-100 dark:bg-gray-800"
+      className="min-h-screen flex flex-col items-center justify-center max-w-full overflow-hidden px-4 py-12 sm:px-6 lg:px-8 bg-gray-100 dark:bg-gray-800"
     >
       <div className="text-center w-full max-w-full mx-auto px-0 sm:px-4">
        
