@@ -3,10 +3,48 @@ import '@/app/rascalland.css';
 import VideoPlayer from './video-player';
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import FlipCoin from './flip-coin';
 import Rascal from "@/public/images/rascal.png";
 import RascalLandHeader from "@/public/images/rascal-land-header-view.png";
 import Hero8 from "@/public/images/hero8.png";
 
+const NFTImages = [
+  {
+    id: 1,
+    frontImage: '/images/aboutus-character1.png',
+    altText: 'Mooner Man NFT #1',
+  },
+  {
+    id: 2,
+    frontImage: '/images/aboutus-character2.png',
+    altText: 'Mooner Man NFT #2',
+  },
+  {
+    id: 3,
+    frontImage: '/images/aboutus-character3.png',
+    altText: 'Mooner Man NFT #3',
+  },
+  {
+    id: 4,
+    frontImage: '/images/aboutus-character4.png',
+    altText: 'Mooner Man NFT #4',
+  },
+  {
+    id: 5,
+    frontImage: '/images/aboutus-character5.png',
+    altText: 'Mooner Man NFT #5',
+  },
+  {
+    id: 6,
+    frontImage: '/images/aboutus-character6.png',
+    altText: 'Mooner Man NFT #6',
+  },
+  {
+    id: 7,
+    frontImage: '/images/aboutus-character7.png',
+    altText: 'Mooner Man NFT #7',
+  },
+];
 const HomeSection = () => {
   const { theme } = useTheme();
   return (
@@ -34,18 +72,10 @@ const HomeSection = () => {
           className="w-1/2 max-w-[500px] md:max-w-[300px] lg:max-w-[500px] mx-auto"
           />
       </div>
-      
+      <FlipCoin images={NFTImages} />
       <div className="text-center mx-auto">
-        <h1 className="text-5xl md:text-6xl grandstander font-bold mb-6 bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
-          
-          Welcome to Rascal Land
-        </h1>
-        <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-10">
-          The New Hit Kids Animation Series.
-          Earn your 15% royalty stake in the new TV Kids Animated Series now !!!
-        </p>
         {/* TV Container */}
-        <div className="relative max-w-4xl mx-auto mb-12 bg-opacity-100">
+        <div className="relative max-w-4xl mx-auto mb-12">
           <VideoPlayer 
           playbackId= { theme == "dark" ? "2v1uyGlSJj3IXMxPrsBk02kUyjWSIjXfMK1VfcwoNf8M" : "IwNopqcC6bXfDzfTiYbaiWx5efwUVGKMTepa3SVqvh8" }
           />

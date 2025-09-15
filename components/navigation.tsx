@@ -48,7 +48,7 @@ const Navigation = () => {
             {/* Logo */}
             <Link
               href="/"
-              className={`font-bold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent transition-all ${
+              className={`font-bold bg-gradient-to-r from-red-600 to-yellow-500 bg-clip-text text-transparent transition-all ${
                 isScrolled ? "text-xl" : "text-2xl"
               }`}
               onClick={() => setIsMenuOpen(false)}
@@ -128,7 +128,7 @@ const Navigation = () => {
       {/* Scroll progress indicator */}
       <div className="fixed top-0 left-0 right-0 h-1 z-50" style={{ width: '100vw' }}>
         <div
-          className="h-full bg-gradient-to-r from-red-600 to-orange-500 transition-all duration-300"
+          className="h-full bg-gradient-to-r from-red-600 to-yellow-500 transition-all duration-300"
           style={{
             width: `${scrollProgress}%`,
           }}

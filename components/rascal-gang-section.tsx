@@ -82,7 +82,7 @@ const RascalGangSection = () => {
         <Image src={RascalGang}
         alt="Rascal Gang"
         />
-        <p className="text-base sm:text-lg md:text-xl font-bold text-gray-600 dark:text-gray-300 mb-8 md:mb-10 p-4">
+        <p className="text-base sm:text-lg grandstander md:text-xl font-bold text-gray-600 dark:text-gray-300 mb-8 md:mb-10 p-4">
           Join the Little Rascals on their wild adventures! Explore magical worlds, learn important life lessons, and dive into exciting games and activities—all designed to entertain and educate your little ones!
         </p>
 

@@ -56,7 +56,7 @@ const RoadmapSection = () => {
 
         <div className="relative mt-12">
           {/* Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-red-500 to-orange-500 -z-10"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-red-500 to-yellow-500 -z-10"></div>
 
           {/* Timeline items */}
           <div className="space-y-12">

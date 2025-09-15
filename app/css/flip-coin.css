@@ -1,0 +1,29 @@
+@keyframes flip {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(180deg);
+  }
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Para sa 3D effect at cross-browser compatibility */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Smooth transitions for all supported browsers */
+.transition-transform {
+  transition: transform 0.7s ease-in-out;
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 640px) {
+  .flip-coin-container {
+    padding: 1rem;
+  }
+}
