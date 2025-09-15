@@ -19,9 +19,9 @@ export default function Home() {
         <RoadmapSection />
         <SectionNavigation />
       </main>
-      <footer role="contentinfo" className="w-full flex flex-col sm:flex-row items-center justify-center border-t mx-auto text-center text-xs gap-4 sm:gap-8 py-8 sm:py-16">
+      <footer role="contentinfo" className="w-full grandstander flex flex-col sm:flex-row items-center justify-center border-t mx-auto text-center text-xs gap-4 sm:gap-8 py-8 sm:py-16">
           <p>
-            Rascal Land @2025 
+            Rascal Land &copy; 2025 
           </p>
       </footer>
     </>

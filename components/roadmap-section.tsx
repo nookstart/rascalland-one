@@ -39,11 +39,10 @@ const RoadmapSection = () => {
   return (
     <section
       id="roadmap"
-      className="min-h-screen flex flex-col items-center justify-center relative px-4 py-2 sm:px-6 lg:px-8"
+      className="min-h-screen grandstander w-full flex flex-col items-center justify-center relative px-4 py-2 sm:px-6 lg:px-8"
       style={{
         backgroundImage: `url(${RoadMapBg.src})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center'
       }}
     >
       <div className="text-center mx-auto">
