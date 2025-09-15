@@ -69,8 +69,12 @@
   }
 }
 
+:root {
+  --font-grandstander: 'Grandstander', cursive;
+}
+
 .grandstander {
-  font-family: Grandstander, cursive;
+  font-family: var(--font-grandstander), cursive;
 }
 
 /* Custom styles for wallet adapter */

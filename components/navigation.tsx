@@ -5,6 +5,15 @@ import Link from "next/link";
 import { Menu, X, Home, Users, Map, Sparkles } from "lucide-react";
 import Image from "next/image";
 import RascalLandLogo from '@/public/images/logo-transparent-4_360x.png';
+import { Grandstander } from "next/font/google";
+
+const GrandstanderFont = Grandstander({
+  variable: "--font-granstander",
+  display: "swap",
+  weight: ['400', '500', '600', '700'],
+  subsets: ["latin"],
+});
+
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,7 +45,7 @@ const Navigation = () => {
     <>
       <nav
         role="navigation"
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 grandstander ${
+        className={`${GrandstanderFont.className} fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
             ? "py-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm"
             : "py-3 bg-white dark:bg-gray-900"

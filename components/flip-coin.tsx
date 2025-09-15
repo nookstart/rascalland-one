@@ -1,5 +1,14 @@
 import { useState } from 'react';
 import Image from 'next/image';
+import { Grandstander } from "next/font/google";
+
+const GrandstanderFont = Grandstander({
+  variable: "--font-granstander",
+  display: "swap",
+  weight: ['400', '500', '600', '700'],
+  subsets: ["latin"],
+});
+
 import '@/app/css/flip-coin.css';
 interface FlipImage {
   id: number;
@@ -16,11 +25,11 @@ const FlipCoin = ({ images }: FlipCoinProps) => {
 
   return (
     <div className="flex items-center justify-center relative top-2 mb-4">
-      <div className="w-full max-w-7xl mx-auto text-center">
-        <h1 className="text-5xl md:text-6xl grandstander font-bold mb-6 bg-gradient-to-r from-red-600 to-yellow-500 bg-clip-text text-transparent">
+      <div className={`${GrandstanderFont.className} w-full max-w-7xl mx-auto text-center`}>
+        <h1 className={`text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-600 to-yellow-500 bg-clip-text text-transparent`}>
           Welcome to Rascal Land
         </h1>
-        <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-10 grandstander">
+        <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-10">
           The New Hit Kids Animation Series.
           Earn your 15% royalty stake in the new TV Kids Animated Series now !!!
         </p>
