@@ -1,6 +1,6 @@
 "use client";
 
-import RoadMapBg from '@/public/images/roadmap.png';
+import RoadMapBg from '@/public/images/roadmap.webp';
 
 const RoadmapSection = () => {
   const roadmapItems = [

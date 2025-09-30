@@ -27,3 +27,54 @@
     padding: 1rem;
   }
 }
+
+
+.nft-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem; /* 8px */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nft-card:hover {
+  transform: scale(1.05); /* Mag-zoom in ng 5% */
+  box-shadow: 0 10px 20px rgba(255, 204, 0, 0.4), 0 0 30px rgba(239, 68, 68, 0.3); /* Yellow at Red glow */
+}
+
+.nft-card-image {
+  transition: transform 0.3s ease;
+}
+
+/* app/css/image-gallery.css */
+.nft-card {
+  position: relative;
+  overflow: hidden; /* Mahalaga para itago ang overlay */
+  border-radius: 0.5rem;
+}
+
+.nft-card-image {
+  transition: transform 0.35s ease;
+}
+
+.nft-card:hover .nft-card-image {
+  transform: scale(1.1); /* Opsyonal: i-zoom din ang background image */
+}
+
+.nft-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  width: 100%;
+  transform: translateY(100%); /* Nagsisimula sa labas ng container */
+  transition: transform 0.35s ease-in-out;
+  padding: 2rem 1rem 1rem; /* Space para sa text */
+  text-align: center;
+}
+
+.nft-card:hover .nft-overlay {
+  transform: translateY(0); /* Ipinapakita ang overlay on hover */
+}

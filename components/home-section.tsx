@@ -1,12 +1,11 @@
 "use client";
-import '@/app/rascalland.css';
 import VideoPlayer from './video-player';
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import FlipCoin from './flip-coin';
+import CharacterDeck from './character-deck';
 import Rascal from "@/public/images/rascal.png";
 import RascalLandHeader from "@/public/images/rascal-land-header-view.png";
-import Hero8 from "@/public/images/hero8.png";
+import Hero8 from "@/public/images/hero8.webp";
 import { Grandstander } from "next/font/google";
 
 const GrandstanderFont = Grandstander({
@@ -19,37 +18,37 @@ const GrandstanderFont = Grandstander({
 const NFTImages = [
   {
     id: 1,
-    frontImage: '/images/aboutus-character1.png',
+    frontImage: '/images/aboutus-character1.webp',
     altText: 'Mooner Man NFT #1',
   },
   {
     id: 2,
-    frontImage: '/images/aboutus-character2.png',
+    frontImage: '/images/aboutus-character2.webp',
     altText: 'Mooner Man NFT #2',
   },
   {
     id: 3,
-    frontImage: '/images/aboutus-character3.png',
+    frontImage: '/images/aboutus-character3.webp',
     altText: 'Mooner Man NFT #3',
   },
   {
     id: 4,
-    frontImage: '/images/aboutus-character4.png',
+    frontImage: '/images/aboutus-character4.webp',
     altText: 'Mooner Man NFT #4',
   },
   {
     id: 5,
-    frontImage: '/images/aboutus-character5.png',
+    frontImage: '/images/aboutus-character5.webp',
     altText: 'Mooner Man NFT #5',
   },
   {
     id: 6,
-    frontImage: '/images/aboutus-character6.png',
+    frontImage: '/images/aboutus-character6.webp',
     altText: 'Mooner Man NFT #6',
   },
   {
     id: 7,
-    frontImage: '/images/aboutus-character7.png',
+    frontImage: '/images/aboutus-character7.webp',
     altText: 'Mooner Man NFT #7',
   },
 ];
@@ -80,15 +79,19 @@ const HomeSection = () => {
           className="w-1/2 max-w-[500px] md:max-w-[300px] lg:max-w-[500px] mx-auto"
           />
       </div>
-      <FlipCoin images={NFTImages} />
-      <div className="text-center mx-auto">
-        {/* TV Container */}
-        <div className="relative max-w-4xl mx-auto mb-12">
-          <VideoPlayer 
-          playbackId= { theme == "dark" ? "2v1uyGlSJj3IXMxPrsBk02kUyjWSIjXfMK1VfcwoNf8M" : "IwNopqcC6bXfDzfTiYbaiWx5efwUVGKMTepa3SVqvh8" }
-          />
+      <section id="character-deck" className="relative w-full">
+        <CharacterDeck images={NFTImages} />
+      </section>
+      <section id="video-player-section" className="text-center mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="text-center mx-auto">
+          {/* TV Container */}
+          <div className="relative max-w-4xl mx-auto">
+            <VideoPlayer 
+            playbackId= { theme == "dark" ? "2v1uyGlSJj3IXMxPrsBk02kUyjWSIjXfMK1VfcwoNf8M" : "IwNopqcC6bXfDzfTiYbaiWx5efwUVGKMTepa3SVqvh8" }
+            />
+          </div>
         </div>
-      </div>
+      </section>
     </section>
   );
 };

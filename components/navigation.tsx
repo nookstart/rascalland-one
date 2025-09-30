@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Home, Users, Map, Sparkles } from "lucide-react";
 import Image from "next/image";
-import RascalLandLogo from '@/public/images/logo-transparent-4_360x.png';
+import RascalLandLogo from '@/public/images/logo-transparent-4_360x.webp';
 import { Grandstander } from "next/font/google";
 
 const GrandstanderFont = Grandstander({

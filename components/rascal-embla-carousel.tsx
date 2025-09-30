@@ -13,7 +13,7 @@ type PropType = {
 const EmblaCarousel: React.FC<PropType> = (props) => {
   const { slides, options } = props
   const [emblaRef, /*emblaApi*/] = useEmblaCarousel(options, [
-    AutoScroll({ playOnInit: true })
+    AutoScroll({ playOnInit: true, stopOnInteraction: false, speed: 2 })
   ])
 
   return (

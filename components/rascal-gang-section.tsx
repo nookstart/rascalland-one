@@ -66,7 +66,7 @@ const OPTIONS: EmblaOptionsType = {
   align: 'start',
   loop: true,
   skipSnaps: false,
-  containScroll: 'trimSnaps'
+  containScroll: 'trimSnaps',
 }
 
 const SLIDES = rascalItems;
